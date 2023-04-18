@@ -13,8 +13,10 @@ app.use(
   cors({
     origin: "https://emotionaloutlets.vercel.app",
     credentials: true,
+    exposedHeaders: ["Access-Control-Allow-Origin"],
   })
 );
+
 app.use(express.static(path.join(__dirname, "public")));
 require("./mongoDB/Connection");
 const userInfo = require("./loginSignup/User");
