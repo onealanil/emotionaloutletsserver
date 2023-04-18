@@ -28,6 +28,8 @@ app.use("/post", post);
 app.use("/message", MessageInfo);
 app.use("/admin", adminPost);
 const socketIO = require("socket.io");
+const authenticate = require("./middleware");
+app.use(authenticate);
 
 const http = require("http").createServer(app);
 
