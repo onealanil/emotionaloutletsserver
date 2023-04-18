@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+app.use(cors({ credentials: true, origin: "https://emotionaloutlets.vercel.app" }));
 app.use(express.static(path.join(__dirname, "public")));
 require("./mongoDB/Connection");
 const userInfo = require("./loginSignup/User");
@@ -26,7 +26,7 @@ const http = require("http").createServer(app);
 
 const io = socketIO(http, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "https://emotionaloutlets.vercel.app",
   },
 });
 
