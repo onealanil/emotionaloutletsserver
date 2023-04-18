@@ -62,7 +62,7 @@ route.post("/signup", async (req, res) => {
     });
 
     let mailOptions = {
-      from: "cary.beatty@thereal.email",
+      from: "khalifaanil84@gmail.com",
       to: email,
       subject: "Verify your email!",
       text: "Verify Email",
