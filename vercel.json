@@ -11,11 +11,5 @@
       "src": "/.*",
       "dest": "index.js"
     }
-  ],
-  "functions": {
-    "api": {
-      "memory": 1024,
-      "timeout": 20
-    }
-  }
+  ]
 }
