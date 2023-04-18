@@ -31,12 +31,13 @@ const socketIO = require("socket.io");
 
 const http = require("http").createServer(app);
 
-const io = socketIO(http, {
+const io = require("socket.io")(http, {
   cors: {
     origin: "https://emotionaloutlets.vercel.app",
+    methods: ["GET", "POST"],
+    credentials: true,
   },
 });
-
 let onlineUsers = [];
 
 const addNewUser = (userId, socketId) => {
