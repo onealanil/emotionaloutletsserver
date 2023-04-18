@@ -9,7 +9,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({ credentials: true, origin: "https://emotionaloutlets.vercel.app" }));
+app.use(
+  cors({
+    origin: "https://emotionaloutlets.vercel.app",
+    credentials: true,
+  })
+);
 app.use(express.static(path.join(__dirname, "public")));
 require("./mongoDB/Connection");
 const userInfo = require("./loginSignup/User");
