@@ -27,69 +27,69 @@ app.use("/", userInfo);
 app.use("/post", post);
 app.use("/message", MessageInfo);
 app.use("/admin", adminPost);
-const socketIO = require("socket.io");
+// const socketIO = require("socket.io");
 
-const http = require("http").createServer(app);
+// const http = require("http").createServer(app);
 
-const io = require("socket.io")(http, {
-  cors: {
-    origin: "https://emotionaloutlets.vercel.app",
-    methods: ["GET", "POST"],
-    credentials: true,
-  },
-});
-let onlineUsers = [];
+// const io = socketIO(http, {
+//   cors: {
+//     origin: "https://emotionaloutlets.vercel.app",
+//     methods: ["GET", "POST"],
+//     credentials: true,
+//   },
+// });
+// let onlineUsers = [];
 
-const addNewUser = (userId, socketId) => {
-  !onlineUsers.some((user) => user.userId === userId) &&
-    onlineUsers.push({ userId, socketId });
-};
+// const addNewUser = (userId, socketId) => {
+//   !onlineUsers.some((user) => user.userId === userId) &&
+//     onlineUsers.push({ userId, socketId });
+// };
 
-const removeUser = (socketId) => {
-  onlineUsers = onlineUsers.filter((user) => user.socketId !== socketId);
-};
+// const removeUser = (socketId) => {
+//   onlineUsers = onlineUsers.filter((user) => user.socketId !== socketId);
+// };
 
-const getUser = (userId) => {
-  return onlineUsers.find((user) => user.userId === userId);
-};
+// const getUser = (userId) => {
+//   return onlineUsers.find((user) => user.userId === userId);
+// };
 
-// Socket Connection
-io.on("connection", (socket) => {
-  socket.on("addUser", (data) => {
-    addNewUser(data.userId, socket.id);
-    io.emit("getUsers", onlineUsers);
-  });
+// // Socket Connection
+// io.on("connection", (socket) => {
+//   socket.on("addUser", (data) => {
+//     addNewUser(data.userId, socket.id);
+//     io.emit("getUsers", onlineUsers);
+//   });
 
-  // for messages
-  socket.on("textMessage", ({ sender, receiver, message }) => {
-    const socketIdReceiver = getUser(receiver);
-    if (socketIdReceiver) {
-      io.to(socketIdReceiver.socketId).emit("textMessageFromBack", {
-        sender,
-        receiver,
-        message,
-      });
-    }
-  });
+//   // for messages
+//   socket.on("textMessage", ({ sender, receiver, message }) => {
+//     const socketIdReceiver = getUser(receiver);
+//     if (socketIdReceiver) {
+//       io.to(socketIdReceiver.socketId).emit("textMessageFromBack", {
+//         sender,
+//         receiver,
+//         message,
+//       });
+//     }
+//   });
 
-  //for notification
-  socket.on("message", (notification) => {
-    const receiver = getUser(notification.receiver);
-    if (receiver) {
-      io.to(receiver.socketId).emit("messageFromBack", notification);
-    }
-  });
+//   //for notification
+//   socket.on("message", (notification) => {
+//     const receiver = getUser(notification.receiver);
+//     if (receiver) {
+//       io.to(receiver.socketId).emit("messageFromBack", notification);
+//     }
+//   });
 
-  socket.on("disconnect", () => {
-    removeUser(socket.id);
-    io.emit("getUsers", onlineUsers);
-  });
-});
+//   socket.on("disconnect", () => {
+//     removeUser(socket.id);
+//     io.emit("getUsers", onlineUsers);
+//   });
+// });
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-http.listen(port, () => {
+app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
