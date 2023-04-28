@@ -10,7 +10,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-  origin: 'https://emotionaloutlets.vercel.app'
+  origin: 'https://emotionaloutlets.vercel.app',
+  credentials: true
 }));
 
 app.use(express.static(path.join(__dirname, "public")));
