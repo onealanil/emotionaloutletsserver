@@ -9,14 +9,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
-app.use(
-  cors({
-    origin:
-      "https://emotionaloutletsapp-2oum2h9y0-khalifaanil84-gmailcom.vercel.app",
-    credentials: true,
-    exposedHeaders: ["Access-Control-Allow-Origin"],
-  })
-);
+app.use(cors({
+  origin: 'https://emotionaloutlets.vercel.app'
+}));
 
 app.use(express.static(path.join(__dirname, "public")));
 require("./mongoDB/Connection");
@@ -36,8 +31,7 @@ const http = require("http").createServer(app);
 
 const io = socketIO(http, {
   cors: {
-    origin:
-      "https://emotionaloutletsapp-2oum2h9y0-khalifaanil84-gmailcom.vercel.app",
+    origin: "https://emotionaloutlets.vercel.app",
     methods: ["GET", "POST"],
     credentials: true,
   },
