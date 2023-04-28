@@ -11,7 +11,8 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "https://emotionaloutlets.vercel.app",
+    origin:
+      "https://emotionaloutletsapp-2oum2h9y0-khalifaanil84-gmailcom.vercel.app",
     credentials: true,
     exposedHeaders: ["Access-Control-Allow-Origin"],
   })
@@ -35,7 +36,8 @@ const http = require("http").createServer(app);
 
 const io = socketIO(http, {
   cors: {
-    origin: "https://emotionaloutlets.vercel.app",
+    origin:
+      "https://emotionaloutletsapp-2oum2h9y0-khalifaanil84-gmailcom.vercel.app",
     methods: ["GET", "POST"],
     credentials: true,
   },
