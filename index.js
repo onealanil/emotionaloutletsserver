@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-  origin: 'https://emotionaloutlets.vercel.app',
+  origin: 'https://emotionaloutlets.netlify.app',
   credentials: true
 }));
 
@@ -32,7 +32,7 @@ const http = require("http").createServer(app);
 
 const io = socketIO(http, {
   cors: {
-    origin: "https://emotionaloutlets.vercel.app",
+    origin: "https://emotionaloutlets.netlify.app",
     methods: ["GET", "POST"],
     credentials: true,
   },
