@@ -7,7 +7,10 @@ dotenv.config();
 // middleware
 const authenticate = (req, res, next) => {
   const cookies = req.headers.cookie;
-  const token = cookies.split("=")[1];
+  if (!cookies) {
+    return res.sendStatus(401);
+  }
+  const token = cookies.toString().split("=")[1];
   if (!token) {
     return res.sendStatus(401);
   }
